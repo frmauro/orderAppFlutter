@@ -15,7 +15,8 @@ class HomeTab extends StatelessWidget {
       };
 
   Future<String> getAllProducts() async {
-    http.Response res = await http.get(urlApi, headers: _setHeaders());
+    http.Response res =
+        await http.get(Uri.parse(urlApi), headers: _setHeaders());
     if (res.statusCode == 200) {
       //print(res.body);
       return res.body;
@@ -49,7 +50,7 @@ class HomeTab extends StatelessWidget {
               ),
             ),
             FutureBuilder(
-              future: getAllProducts(),
+              //future: getAllProducts(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData)
                   return SliverToBoxAdapter(
@@ -62,7 +63,7 @@ class HomeTab extends StatelessWidget {
                     ),
                   );
                 else {
-                  print(snapshot.data);
+                  //print(snapshot.data);
                   return SliverToBoxAdapter(
                     child: Container(
                       height: 200.0,
