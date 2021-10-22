@@ -61,10 +61,14 @@ class ProductsTab extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           else {
-            return ListView(
-                children: _products.map((p) {
-              return ProductTile(p);
-            }).toList());
+            var divideTiles = ListTile.divideTiles(
+                    tiles: _products.map((p) {
+                      return ProductTile(p);
+                    }).toList(),
+                    color: Colors.grey[500])
+                .toList();
+
+            return ListView(children: divideTiles);
           }
         });
   }

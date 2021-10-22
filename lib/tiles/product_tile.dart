@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:order_app/models/product.dart';
+import 'package:order_app/screens/product_screen.dart';
 
 class ProductTile extends StatelessWidget {
   final Product product;
@@ -15,7 +16,10 @@ class ProductTile extends StatelessWidget {
       ),
       title: Text(product.description),
       trailing: Icon(Icons.keyboard_arrow_right),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => ProductScreen()));
+      },
     );
   }
 }
