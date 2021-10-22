@@ -61,14 +61,19 @@ class ProductsTab extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           else {
-            var divideTiles = ListTile.divideTiles(
-                    tiles: _products.map((p) {
-                      return ProductTile(p);
-                    }).toList(),
-                    color: Colors.grey[500])
-                .toList();
+            // var divideTiles = ListTile.divideTiles(
+            //         tiles: _products.map((p) {
+            //           return ProductTile(p);
+            //         }).toList(),
+            //         color: Colors.grey[500])
+            //     .toList();
 
-            return ListView(children: divideTiles);
+            return ListView.builder(
+                padding: EdgeInsets.all(4.0),
+                itemCount: _products.length,
+                itemBuilder: (context, index) {
+                  return ProductTile(_products[index]);
+                });
           }
         });
   }
