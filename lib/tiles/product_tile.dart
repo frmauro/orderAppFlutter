@@ -17,8 +17,8 @@ class ProductTile extends StatelessWidget {
       title: Text(product.description),
       trailing: Icon(Icons.keyboard_arrow_right),
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ProductScreen()));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ProductScreen(product)));
       },
     );
   }
