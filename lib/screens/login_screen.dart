@@ -4,6 +4,10 @@ import 'package:order_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class LoginScreen extends StatelessWidget {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -38,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 children: <Widget>[
                   TextFormField(
+                    controller: _emailController,
                     decoration: InputDecoration(hintText: "E-mail"),
                     keyboardType: TextInputType.emailAddress,
                     validator: (text) {
@@ -49,6 +54,7 @@ class LoginScreen extends StatelessWidget {
                     height: 16.0,
                   ),
                   TextFormField(
+                    controller: _passwordController,
                     decoration: InputDecoration(hintText: "password"),
                     obscureText: true,
                     validator: (text) {
