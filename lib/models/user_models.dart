@@ -1,8 +1,11 @@
+import 'package:order_app/models/user.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 const urlApiLogIn = "http://192.168.15.61:80/user";
 
 class UserModel extends Model {
+  late User user;
+  Map<String, dynamic> userData = Map();
   bool isLoading = false;
 
   void signUp() {}
@@ -10,7 +13,8 @@ class UserModel extends Model {
   void sigIn() async {
     isLoading = true;
     notifyListeners();
-    await Future.delayed(Duration(seconds: 3));
+
+    //await Future.delayed(Duration(seconds: 3));
 
     isLoading = false;
     notifyListeners();
