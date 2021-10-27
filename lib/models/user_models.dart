@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:order_app/models/user.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -16,33 +18,34 @@ class UserModel extends Model {
 
     //await Future.delayed(Duration(seconds: 3));
 
-// Future<String> saveUser(User user) async {
-//     final http.Response response = await http.post(
-//       urlApiCreate,
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: jsonEncode(<String, String>{
-//         'name': user.name,
-//         'email': user.email,
-//         'password': user.password,
-//         'token': "123",
-//         'userType': user.userType,
-//         'status': user.status
-//       }),
-//     );
+    Future<String> saveUser(User user) async {
+      final http.Response response = await http.post(
+        Uri.parse(urlApiLogIn),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'id': user.id,
+          'name': user.name,
+          'email': user.email,
+          'password': user.password,
+          'token': "123",
+          'userType': user.userType,
+          'status': user.status
+        }),
+      );
 
-//     if (response.statusCode == 200) {
-//       // If the server did return a 201 CREATED response,
-//       // then parse the JSON.
-//       print(response.body);
-//       return "operation success";
-//     } else {
-//       // If the server did not return a 201 CREATED response,
-//       // then throw an exception.
-//       throw Exception('Failed to load user');
-//     }
-//   }
+      if (response.statusCode == 200) {
+        // If the server did return a 201 CREATED response,
+        // then parse the JSON.
+        print(response.body);
+        return "operation success";
+      } else {
+        // If the server did not return a 201 CREATED response,
+        // then throw an exception.
+        throw Exception('Failed to load user');
+      }
+    }
 
     isLoading = false;
     notifyListeners();
