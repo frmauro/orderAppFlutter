@@ -42,4 +42,7 @@ server {
 dart --version
 dart pub outdated --mode=null-safety
 
+## link to migrate
+https://dart.dev/null-safety/migration-guide
+
 
