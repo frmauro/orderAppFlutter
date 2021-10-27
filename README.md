@@ -38,4 +38,8 @@ server {
         }
 }
 
+## commands Dart
+dart --version
+dart pub outdated --mode=null-safety
+
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/home_screen.dart';
-import 'package:order_app/screens/login_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() {
