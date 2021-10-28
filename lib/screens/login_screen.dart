@@ -95,12 +95,6 @@ class LoginScreen extends StatelessWidget {
                             email: _emailController.text,
                             password: _passwordController.text);
                         model.sigIn(login).then((result) {
-                          var jsonUser = json.decode(result) as List;
-
-                          jsonUser.forEach((e) {
-                            User.fromJson(e);
-                          });
-                          //print("---- Result ----");
                           //print(result);
                           //Navigator.pop(context, _editedUser);
                         });

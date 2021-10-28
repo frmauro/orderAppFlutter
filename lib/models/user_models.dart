@@ -15,7 +15,7 @@ class UserModel extends Model {
 
   void signUp() {}
 
-  Future<String> sigIn(Login login) async {
+  Future<User> sigIn(Login login) async {
     isLoading = true;
     notifyListeners();
 
@@ -37,7 +37,13 @@ class UserModel extends Model {
       isLoading = false;
       notifyListeners();
       //print(response.body);
-      return response.body;
+      var jsonUser = json.decode(response.body) as List;
+
+      jsonUser.forEach((e) {
+        user = User.fromJson(e);
+      });
+
+      return user;
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
@@ -45,9 +51,14 @@ class UserModel extends Model {
     }
   }
 
+  void signOut() {
+    user.token = "";
+    notifyListeners();
+  }
+
   void recoverPass() {}
 
   bool isLoggedIn() {
-    return true;
+    return user.token.isNotEmpty;
   }
 }
