@@ -36,8 +36,8 @@ class UserModel extends Model {
       // then parse the JSON.
       isLoading = false;
       notifyListeners();
-      print(response.body);
-      return "operation success";
+      //print(response.body);
+      return response.body;
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.

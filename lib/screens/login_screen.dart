@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:order_app/models/login.dart';
+import 'package:order_app/models/user.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -92,8 +95,13 @@ class LoginScreen extends StatelessWidget {
                             email: _emailController.text,
                             password: _passwordController.text);
                         model.sigIn(login).then((result) {
-                          print("---- Result ----");
-                          print(result);
+                          var jsonUser = json.decode(result) as List;
+
+                          jsonUser.forEach((e) {
+                            User.fromJson(e);
+                          });
+                          //print("---- Result ----");
+                          //print(result);
                           //Navigator.pop(context, _editedUser);
                         });
                       },
