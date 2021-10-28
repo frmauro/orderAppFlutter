@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/models/login.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -87,7 +88,14 @@ class LoginScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {}
-                        model.sigIn();
+                        Login login = new Login(
+                            email: _emailController.text,
+                            password: _passwordController.text);
+                        model.sigIn(login).then((result) {
+                          print("---- Result ----");
+                          print(result);
+                          //Navigator.pop(context, _editedUser);
+                        });
                       },
                     ),
                   ),
