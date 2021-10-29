@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (result.token.isNotEmpty)
                             Navigator.of(context).pop();
                           else {
-                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                            _scaffoldKey.currentState?.showSnackBar(SnackBar(
                                 content: Text("Falha ao fazer o login"),
                                 backgroundColor: Colors.redAccent,
                                 duration: Duration(seconds: 2)));

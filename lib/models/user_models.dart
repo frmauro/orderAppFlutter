@@ -8,8 +8,15 @@ import 'login.dart';
 const urlApiLogIn = "http://192.168.15.61:80/user";
 
 class UserModel extends Model {
-  late User user;
-  late Login login;
+  User user = new User(
+      email: "",
+      id: "",
+      name: "",
+      password: "",
+      status: "",
+      token: "",
+      userType: "");
+  Login login = new Login(email: "", password: "");
   Map<String, dynamic> userData = Map();
   bool isLoading = false;
 
