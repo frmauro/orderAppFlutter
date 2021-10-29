@@ -34,20 +34,21 @@ class UserModel extends Model {
     if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-      isLoading = false;
-      notifyListeners();
       //print(response.body);
       var jsonUser = json.decode(response.body) as List;
-
       jsonUser.forEach((e) {
         user = User.fromJson(e);
       });
-
+      isLoading = false;
+      notifyListeners();
       return user;
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to load user');
+      isLoading = false;
+      notifyListeners();
+      user.token = "";
+      return user;
     }
   }
 

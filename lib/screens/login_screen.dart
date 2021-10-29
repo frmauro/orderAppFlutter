@@ -1,22 +1,30 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:order_app/models/login.dart';
 import 'package:order_app/models/user.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/signup_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
           title: Text("Entrar"),
           centerTitle: true,
@@ -95,6 +103,14 @@ class LoginScreen extends StatelessWidget {
                             email: _emailController.text,
                             password: _passwordController.text);
                         model.sigIn(login).then((result) {
+                          if (result.token.isNotEmpty)
+                            Navigator.of(context).pop();
+                          else {
+                            _scaffoldKey.currentState.showSnackBar(SnackBar(
+                                content: Text("Falha ao fazer o login"),
+                                backgroundColor: Colors.redAccent,
+                                duration: Duration(seconds: 2)));
+                          }
                           //print(result);
                           //Navigator.pop(context, _editedUser);
                         });
