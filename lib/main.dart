@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         child:
             ScopedModelDescendant<UserModel>(builder: (context, child, model) {
           return ScopedModel<CartModel>(
-            model: CartModel(model, "WAITING_PAYMENT"),
+            model: CartModel(model, "Pedido-${DateTime.now().minute}"),
             child: MaterialApp(
               title: 'Order App',
               theme: ThemeData(
