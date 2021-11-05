@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:order_app/models/cart_model.dart';
 import 'package:order_app/models/product.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/login_screen.dart';
@@ -13,6 +14,8 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  final _amountController = TextEditingController();
+
   final Product product;
 
   _ProductScreenState(this.product);
@@ -45,6 +48,13 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontWeight: FontWeight.bold,
                       color: primaryColor),
                 ),
+                Text(
+                  product.amount,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      color: primaryColor),
+                ),
                 SizedBox(
                   height: 16.0,
                 ),
@@ -54,6 +64,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       onPressed: () {
                         if (UserModel.of(context).isLoggedIn()) {
                           // add ao carrinhho
+                          CartModel.of(context).addCartItem(product);
                         } else {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => LoginScreen()));

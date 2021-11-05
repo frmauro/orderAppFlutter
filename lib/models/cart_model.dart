@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:order_app/models/product.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -12,6 +13,9 @@ class CartModel extends Model {
   List<Product> products = [];
 
   CartModel(this.user, this.status);
+
+  static CartModel of(BuildContext context) =>
+      ScopedModel.of<CartModel>(context);
 
   void addCartItem(Product product) {
     products.add(product);
