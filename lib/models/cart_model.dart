@@ -6,13 +6,10 @@ import 'package:scoped_model/scoped_model.dart';
 // Esse é o IP do wifi
 const urlApi = "http://192.168.15.61:80/orders";
 
-enum OrderStatus { WAITING_PAYMENT, PAID, SHIPPED, DELIVERED, CANCELED }
-
 class CartModel extends Model {
   int id = 0;
   String description;
   String moment = "";
-  int orderStatus = int.parse(OrderStatus.WAITING_PAYMENT.toString());
   String userId = "";
   UserModel user;
   List<Product> items = [];
