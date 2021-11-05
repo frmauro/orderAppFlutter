@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:order_app/models/user.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -19,6 +20,9 @@ class UserModel extends Model {
   Login login = new Login(email: "", password: "");
   Map<String, dynamic> userData = Map();
   bool isLoading = false;
+
+  static UserModel of(BuildContext context) =>
+      ScopedModel.of<UserModel>(context);
 
   void signUp() {}
 

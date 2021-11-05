@@ -4,6 +4,14 @@ import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/home_screen.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+//  OrderStatus{
+//     WAITING_PAYMENT = "WAITING_PAYMENT",
+//     PAID = "PAID",
+//     SHIPPED = "SHIPPED",
+//     DELIVERED = "DELIVERED",
+//     CANCELED = "CANCELED"
+// }
+
 void main() {
   runApp(MyApp());
 }
@@ -17,7 +25,7 @@ class MyApp extends StatelessWidget {
         child:
             ScopedModelDescendant<UserModel>(builder: (context, child, model) {
           return ScopedModel<CartModel>(
-            model: CartModel(model),
+            model: CartModel(model, "WAITING_PAYMENT"),
             child: MaterialApp(
               title: 'Order App',
               theme: ThemeData(
