@@ -48,8 +48,14 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontWeight: FontWeight.bold,
                       color: primaryColor),
                 ),
-                Text(
-                  product.amount,
+                TextField(
+                  controller: _amountController,
+                  onChanged: (text) {
+                    //_productEdited = true;
+                    setState(() {
+                      product.amount = text;
+                    });
+                  },
                   style: TextStyle(
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
