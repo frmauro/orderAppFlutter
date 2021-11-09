@@ -14,7 +14,7 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-        id: int.parse(json['id']),
+        id: json['id'],
         amount: json["amount"].toString(),
         description: json["description"],
         status: json["status"],

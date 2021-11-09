@@ -4,6 +4,8 @@ import 'package:order_app/models/product.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/login_screen.dart';
 
+import 'cart_screen.dart';
+
 class ProductScreen extends StatefulWidget {
   final Product product;
 
@@ -71,6 +73,8 @@ class _ProductScreenState extends State<ProductScreen> {
                         if (UserModel.of(context).isLoggedIn()) {
                           // add ao carrinhho
                           CartModel.of(context).addCartItem(product);
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => CartScreen()));
                         } else {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => LoginScreen()));

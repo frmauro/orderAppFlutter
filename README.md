@@ -16,6 +16,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## setup etc/nginx/sites-available/reverse-proxy.conf file.
+sudo nano '/etc/nginx/sites-available/reverse-proxy.conf'
+
 server {
         listen 80;
         listen [::]:80;
