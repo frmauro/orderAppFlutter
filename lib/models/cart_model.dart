@@ -14,6 +14,8 @@ class CartModel extends Model {
   UserModel user;
   List<Product> items = [];
 
+  bool isLoading = false;
+
   CartModel(this.user, this.description);
 
   static CartModel of(BuildContext context) =>
