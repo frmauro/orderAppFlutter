@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:order_app/models/cart_model.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/login_screen.dart';
+import 'package:order_app/tiles/cart_tiles.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -80,7 +81,15 @@ class CartScreen extends StatelessWidget {
               ),
             );
           } else {
-            return ListView();
+            return ListView(
+              children: <Widget>[
+                Column(
+                  children: model.items.map((product) {
+                    return CartTile(product);
+                  }).toList(),
+                )
+              ],
+            );
           }
         },
       ),
