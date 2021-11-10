@@ -35,4 +35,16 @@ class CartModel extends Model {
     items.remove(product);
     notifyListeners();
   }
+
+  void decCartItem(Product product) {
+    product.quatity--;
+    //aqui talvez possa ser que tenha que atualizar a quantidade do produto na API no Servidor
+    notifyListeners();
+  }
+
+  void incCartItem(Product product) {
+    product.quatity++;
+    //aqui talvez possa ser que tenha que atualizar a quantidade do produto na API no Servidor
+    notifyListeners();
+  }
 }

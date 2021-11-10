@@ -3,6 +3,7 @@ import 'package:order_app/models/cart_model.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/login_screen.dart';
 import 'package:order_app/tiles/cart_tiles.dart';
+import 'package:order_app/widgets/cart_price.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -87,7 +88,8 @@ class CartScreen extends StatelessWidget {
                   children: model.items.map((product) {
                     return CartTile(product);
                   }).toList(),
-                )
+                ),
+                CartPrice(() {})
               ],
             );
           }
