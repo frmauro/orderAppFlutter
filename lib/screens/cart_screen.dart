@@ -89,7 +89,9 @@ class CartScreen extends StatelessWidget {
                     return CartTile(product);
                   }).toList(),
                 ),
-                CartPrice(() {})
+                CartPrice(() async {
+                  String orderId = await model.finishOrder();
+                })
               ],
             );
           }

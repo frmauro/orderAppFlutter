@@ -23,4 +23,12 @@ class Product {
         price: json["price"],
         quatity: 0);
   }
+
+  Map toJson() => {
+        'amount': amount,
+        'description': description,
+        'status': status,
+        'price': price,
+        'quantity': quatity
+      };
 }

@@ -6,7 +6,7 @@ class Order {
   int id = 0;
   String description;
   String moment = "";
-  int orderStatus = int.parse(OrderStatus.WAITING_PAYMENT.toString());
+  int orderStatus = 0; //int.parse(OrderStatus.WAITING_PAYMENT.toString());
   String userId = "";
   List<Product> items = [];
 

@@ -14,6 +14,8 @@ class CartPrice extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: ScopedModelDescendant<CartModel>(
           builder: (context, child, model) {
+            double total = model.getProductsTotal();
+
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -33,7 +35,7 @@ class CartPrice extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      "R\$ 0,00",
+                      "R\$ ${total.toStringAsFixed(2)}",
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: 16.0),
