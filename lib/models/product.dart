@@ -28,7 +28,6 @@ class Product {
         'amount': amount,
         'description': description,
         'status': status,
-        'price': price,
-        'quantity': quatity
+        'price': price
       };
 }

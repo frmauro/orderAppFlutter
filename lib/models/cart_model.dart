@@ -16,6 +16,7 @@ class CartModel extends Model {
   String description;
   String moment = "";
   String userId = "";
+  int quantity = 0;
   UserModel user;
   List<Product> items = [];
 
@@ -43,12 +44,14 @@ class CartModel extends Model {
 
   void decCartItem(Product product) {
     product.quatity--;
+    product.amount = product.quatity.toString();
     //aqui talvez possa ser que tenha que atualizar a quantidade do produto na API no Servidor
     notifyListeners();
   }
 
   void incCartItem(Product product) {
     product.quatity++;
+    product.amount = product.quatity.toString();
     //aqui talvez possa ser que tenha que atualizar a quantidade do produto na API no Servidor
     notifyListeners();
   }
@@ -90,7 +93,7 @@ class CartModel extends Model {
     var t = jsonEncode(<String, dynamic>{
       'description': order.description,
       'moment': order.moment,
-      'orderStatus': order.orderStatus.toString(),
+      'orderStatus': order.orderStatus,
       'userId': order.userId,
       'items': jsonEncode(order.items)
     });
@@ -106,7 +109,7 @@ class CartModel extends Model {
       body: jsonEncode(<String, dynamic>{
         'description': order.description,
         'moment': order.moment,
-        'orderStatus': order.orderStatus.toString(),
+        'orderStatus': order.orderStatus,
         'userId': order.userId,
         'items': jsonEncode(order.items)
       }),
