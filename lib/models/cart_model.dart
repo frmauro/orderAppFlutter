@@ -90,13 +90,29 @@ class CartModel extends Model {
     order.orderStatus = 1;
     order.items = items;
 
-    var t = jsonEncode(<String, dynamic>{
-      'description': order.description,
-      'moment': order.moment,
-      'orderStatus': order.orderStatus,
-      'userId': order.userId,
-      'items': jsonEncode(order.items)
+    var jsonOrder = jsonEncode({
+      "id": 0,
+      "description": "Order 012",
+      "orderStatus": 1,
+      "userId": "611aa80245c2ed2212c3ec3d",
+      "items": [
+        {
+          "id": 1,
+          "description": "Product 001",
+          "quantity": 1,
+          "price": 200,
+          "productId": 1
+        }
+      ]
     });
+
+    // var t = jsonEncode(<String, dynamic>{
+    //   'description': order.description,
+    //   'moment': order.moment,
+    //   'orderStatus': order.orderStatus,
+    //   'userId': order.userId,
+    //   'items': jsonEncode(order.items)
+    // });
 
     isLoading = true;
     notifyListeners();
@@ -106,13 +122,7 @@ class CartModel extends Model {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, dynamic>{
-        'description': order.description,
-        'moment': order.moment,
-        'orderStatus': order.orderStatus,
-        'userId': order.userId,
-        'items': jsonEncode(order.items)
-      }),
+      body: jsonOrder,
     );
 
     if (response.statusCode == 201) {

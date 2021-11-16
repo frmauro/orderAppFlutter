@@ -47,4 +47,7 @@ dart pub outdated --mode=null-safety
 ## link to migrate
 https://dart.dev/null-safety/migration-guide
 
+## CURLs commands
+curl -X POST -H "Content-Type: application/json" -d '{"id": 0, "description": "Order 011", "orderStatus": 1, "userId": "611aa80245c2ed2212c3ec3d", "items": [{"id": 1, "description": "Product 001", "quantity": 1, "price": 200, "productId": 1}]}' http://localhost/orders
+
 
