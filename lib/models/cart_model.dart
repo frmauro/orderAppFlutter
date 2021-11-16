@@ -128,7 +128,9 @@ class CartModel extends Model {
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-      print(response.body);
+      //print(response.body);
+      //aqui será feito uma requisião para atuaizar a quantidade de produtos
+
       items.clear();
       isLoading = false;
       notifyListeners();
