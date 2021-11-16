@@ -25,9 +25,10 @@ class Product {
   }
 
   Map toJson() => {
-        'amount': amount,
+        'id': id,
         'description': description,
-        'status': status,
-        'price': price
+        'quantity': quatity,
+        'price': price,
+        'productId': id
       };
 }
