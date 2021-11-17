@@ -59,3 +59,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"id": 0, "description": "O
 curl http://localhost/ordersproducts
 
 
+curl -X POST -H "Content-Type: application/json" -d '[{"id": 1, "description": "Product 001", "amount": 1, "price": "200", "status": "Active"}]' http://localhost/ordersproducts
+
+
+

@@ -130,10 +130,10 @@ class CartModel extends Model {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       print(response.body);
-      items.clear();
-      isLoading = false;
       //aqui será feito uma requisião para atuaizar a quantidade de produtos
       return updateAmount(order.items).then((result) {
+        isLoading = false;
+        items.clear();
         notifyListeners();
         return result;
       });
@@ -150,7 +150,21 @@ class CartModel extends Model {
 
   Future<String> updateAmount(List<Product> items) async {
     String result = "";
-    var t = jsonEncode({'dtos': items});
+    List<dynamic> products = [];
+
+    //[{"id": 1, "description": "Product 001", "amount": 1, "price": "200", "status": "Active"}]
+
+    products = items
+        .map((e) => {
+              'id': e.id,
+              'description': e.description,
+              'amount': int.parse(e.amount),
+              'price': e.price,
+              'status': e.status
+            })
+        .toList();
+
+    var t = jsonEncode(products);
 
     final http.Response response = await http.post(
       Uri.parse(urlApiOrderProducts),
@@ -160,7 +174,7 @@ class CartModel extends Model {
       body: t,
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       print(response.body);
