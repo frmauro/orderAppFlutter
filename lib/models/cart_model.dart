@@ -10,6 +10,7 @@ import 'order.dart';
 
 // Esse é o IP do wifi
 const urlApi = "http://192.168.15.61:80/orders";
+const urlApiOrderProducts = "http://192.168.15.61:80/ordersproducts";
 
 class CartModel extends Model {
   int id = 0;
@@ -128,18 +129,44 @@ class CartModel extends Model {
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-      //print(response.body);
-      //aqui será feito uma requisião para atuaizar a quantidade de produtos
-
+      print(response.body);
       items.clear();
       isLoading = false;
-      notifyListeners();
-      return id;
-      //return "operation success";
+      //aqui será feito uma requisião para atuaizar a quantidade de produtos
+      return updateAmount(order.items).then((result) {
+        notifyListeners();
+        return result;
+      });
+
+      //return result;
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
+      isLoading = false;
+      notifyListeners();
       throw Exception('Failed to load order');
+    }
+  }
+
+  Future<String> updateAmount(List<Product> items) async {
+    String result = "";
+    var t = jsonEncode({'dtos': items});
+
+    final http.Response response = await http.post(
+      Uri.parse(urlApiOrderProducts),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: t,
+    );
+
+    if (response.statusCode == 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print(response.body);
+      return result;
+    } else {
+      throw Exception('Failed to update product amount');
     }
   }
 }
