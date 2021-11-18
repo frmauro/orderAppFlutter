@@ -50,19 +50,19 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontWeight: FontWeight.bold,
                       color: primaryColor),
                 ),
-                TextField(
-                  controller: _amountController,
-                  onChanged: (text) {
-                    //_productEdited = true;
-                    setState(() {
-                      product.amount = text;
-                    });
-                  },
-                  style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                      color: primaryColor),
-                ),
+                // TextField(
+                //   controller: _amountController,
+                //   onChanged: (text) {
+                //     //_productEdited = true;
+                //     setState(() {
+                //       product.amount = text;
+                //     });
+                //   },
+                //   style: TextStyle(
+                //       fontSize: 22.0,
+                //       fontWeight: FontWeight.bold,
+                //       color: primaryColor),
+                // ),
                 SizedBox(
                   height: 16.0,
                 ),
