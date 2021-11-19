@@ -1,8 +1,44 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:order_app/models/order.dart';
 import 'package:order_app/models/user_models.dart';
 import 'package:order_app/screens/login_screen.dart';
 
+// Esse é o IP do wifi
+const urlApi = "http://192.168.15.61:80/orders";
+
 class OrdersTab extends StatelessWidget {
+  List<Order> _orders = [];
+
+  _setHeaders() => {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      };
+
+  Future<String> getAllOrdersByUserId(String id) async {
+    String url = urlApi + "/findByUserId/" + id;
+    http.Response res = await http.get(Uri.parse(url), headers: _setHeaders());
+    if (res.statusCode == 200) {
+      //print(res.body);
+      return res.body;
+    }
+    return "erro";
+  }
+
+  Future<List<Order>> AllOrdersByUserId(String id) {
+    return this.getAllOrdersByUserId(id).then((body) {
+      var jsonOrders = json.decode(body) as List;
+      _orders.clear();
+      jsonOrders.forEach((e) {
+        _orders.add(Order.fromJson(e));
+      });
+      return _orders;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (UserModel.of(context).isLoggedIn()) {

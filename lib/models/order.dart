@@ -10,5 +10,17 @@ class Order {
   String userId = "";
   List<Product> items = [];
 
-  Order(this.description);
+  Order({required this.description});
+
+  factory Order.fromJson(Map<String, dynamic> json) {
+    return Order(description: json["description"]);
+  }
+
+  Map toJson() => {
+        'id': id,
+        'description': description,
+        'moment': moment,
+        'orderStatus': orderStatus,
+        'userId': userId
+      };
 }
