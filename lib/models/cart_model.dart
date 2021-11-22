@@ -14,7 +14,7 @@ const urlApiOrderProducts = "http://192.168.15.61:80/ordersproducts";
 
 class CartModel extends Model {
   int id = 0;
-  String description;
+  String description = "";
   String moment = "";
   String userId = "";
   int quantity = 0;
@@ -85,7 +85,7 @@ class CartModel extends Model {
     // private Double price;
     // private Integer productId;
 
-    var order = new Order(description);
+    var order = new Order(description, 1);
     order.moment = "";
     order.userId = user.user.id;
     order.orderStatus = 1;

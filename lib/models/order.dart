@@ -10,10 +10,10 @@ class Order {
   String userId = "";
   List<Product> items = [];
 
-  Order({required this.description});
+  Order(this.description, this.orderStatus);
 
   factory Order.fromJson(Map<String, dynamic> json) {
-    return Order(description: json["description"]);
+    return Order(json["description"], json["orderStatus"]);
   }
 
   Map toJson() => {

@@ -14,6 +14,7 @@ const urlApi = "http://192.168.15.61:80/orders";
 //http://192.168.15.61:80/findByUserId/611aa80245c2ed2212c3ec3d
 
 class OrdersTab extends StatelessWidget {
+  final _orderController = TextEditingController();
   List<Order> _orders = [];
 
   _setHeaders() => {
@@ -55,7 +56,7 @@ class OrdersTab extends StatelessWidget {
             );
           } else {
             return ListView(
-              children: _orders.map((o) => OrderTile(o.id)).toList(),
+              children: _orders.map((o) => OrderTile(o)).toList(),
             );
           }
         },
