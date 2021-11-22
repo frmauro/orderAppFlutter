@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:order_app/models/order.dart';
+import 'package:order_app/models/product.dart';
 
 class OrderTile extends StatelessWidget {
   final Order order;
@@ -29,6 +30,15 @@ class OrderTile extends StatelessWidget {
     return strStatus;
   }
 
+  String getProducts(List<Product> items) {
+    String descriptionProducts = "";
+    items.map((p) => {
+          descriptionProducts +=
+              "Description: " + p.description + ", Price: " + p.price + " / "
+        });
+    return descriptionProducts;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -40,7 +50,14 @@ class OrderTile extends StatelessWidget {
               subtitle: Text(
                 getDescriptionStatus(this.order.orderStatus),
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
-              ))
+              )),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              getProducts(this.order.items),
+              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+            ),
+          ),
         ],
       ),
     );
