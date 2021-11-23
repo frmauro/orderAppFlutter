@@ -32,10 +32,13 @@ class OrderTile extends StatelessWidget {
 
   String getProducts(List<Product> items) {
     String descriptionProducts = "";
-    items.map((p) => {
-          descriptionProducts +=
-              "Description: " + p.description + ", Price: " + p.price + " / "
-        });
+    for (int i = 0; i < items.length; i++) {
+      descriptionProducts += "Description: " +
+          items[i].description +
+          ", Price: " +
+          items[i].price +
+          " / ";
+    }
     return descriptionProducts;
   }
 

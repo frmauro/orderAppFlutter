@@ -20,7 +20,7 @@ class Product {
         amount: json["amount"].toString(),
         description: json["description"],
         status: json["status"],
-        price: json["price"],
+        price: json["price"].toString(),
         quatity: 0);
   }
 
