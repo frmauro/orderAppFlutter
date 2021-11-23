@@ -27,17 +27,14 @@ class OrderTile extends StatelessWidget {
         break;
       default:
     }
-    return strStatus;
+    return "Status do pedido: $strStatus";
   }
 
   String getProducts(List<Product> items) {
     String descriptionProducts = "";
     for (int i = 0; i < items.length; i++) {
-      descriptionProducts += "Description: " +
-          items[i].description +
-          ", Price: " +
-          items[i].price +
-          " / ";
+      descriptionProducts +=
+          "Description: ${items[i].description} , Price: ${items[i].price} - \n";
     }
     return descriptionProducts;
   }
