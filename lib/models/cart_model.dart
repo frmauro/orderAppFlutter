@@ -9,7 +9,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'order.dart';
 
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/orders";
+const urlApi = "http://192.168.15.61:80/GetAllOrders";
 const urlApiOrderProducts = "http://192.168.15.61:80/ordersproducts";
 
 class CartModel extends Model {

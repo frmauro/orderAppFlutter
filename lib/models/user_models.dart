@@ -6,7 +6,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'login.dart';
 
-const urlApiLogIn = "http://192.168.15.61:80/user";
+const urlApiLogIn = "http://192.168.15.61:80/FindUserByEmailAndPassword";
 
 class UserModel extends Model {
   User user = new User(
@@ -46,10 +46,11 @@ class UserModel extends Model {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       //print(response.body);
-      var jsonUser = json.decode(response.body) as List;
-      jsonUser.forEach((e) {
-        user = User.fromJson(e);
-      });
+      //var jsonUser = json.decode(response.body) as List;
+      //jsonUser.forEach((e) {
+      var jsonUser = json.decode(response.body);
+      user = User.fromJson(jsonUser);
+      //});
       isLoading = false;
       notifyListeners();
       return user;
