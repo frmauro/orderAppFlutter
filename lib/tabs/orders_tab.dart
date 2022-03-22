@@ -9,7 +9,7 @@ import 'package:order_app/screens/login_screen.dart';
 import 'package:order_app/tiles/order_tile.dart';
 
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/orders";
+const urlApi = "http://192.168.15.61:80";
 
 //http://192.168.15.61:80/findByUserId/611aa80245c2ed2212c3ec3d
 
@@ -23,7 +23,7 @@ class OrdersTab extends StatelessWidget {
       };
 
   Future<String> getAllOrdersByUserId(String id) async {
-    String url = urlApi + "/findByUserId/" + id;
+    String url = urlApi + "/getOrderByUserId/" + id;
     http.Response res = await http.get(Uri.parse(url), headers: _setHeaders());
     if (res.statusCode == 200) {
       //print(res.body);

@@ -13,7 +13,7 @@ class Order {
   Order(this.description, this.orderStatus);
 
   factory Order.fromJson(Map<String, dynamic> json) {
-    Order order = new Order(json["description"], json["orderStatus"]);
+    Order order = new Order(json["description"], json["status"]);
     final List list = json["items"];
     order.items = list.map((p) => Product.fromJson(p)).toList();
     return order;

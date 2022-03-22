@@ -9,8 +9,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'order.dart';
 
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/GetAllOrders";
-const urlApiOrderProducts = "http://192.168.15.61:80/ordersproducts";
+const urlApiCreateOrder = "http://192.168.15.61:80/CreateOrder";
+const urlApiUpdateAmount = "http://192.168.15.61:80/UpdateAmount";
 
 class CartModel extends Model {
   int id = 0;
@@ -110,7 +110,7 @@ class CartModel extends Model {
     var t = jsonEncode({
       'id': 0,
       'description': order.description,
-      'orderStatus': order.orderStatus,
+      'status': order.orderStatus,
       'userId': order.userId,
       'items': order.items
     });
@@ -119,14 +119,14 @@ class CartModel extends Model {
     notifyListeners();
 
     final http.Response response = await http.post(
-      Uri.parse(urlApi),
+      Uri.parse(urlApiCreateOrder),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: t,
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201 || response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       print(response.body);
@@ -155,19 +155,13 @@ class CartModel extends Model {
     //[{"id": 1, "description": "Product 001", "amount": 1, "price": "200", "status": "Active"}]
 
     products = items
-        .map((e) => {
-              'id': e.id,
-              'description': e.description,
-              'amount': int.parse(e.amount),
-              'price': e.price,
-              'status': e.status
-            })
+        .map((e) => {'id': e.id, 'Quantity': int.parse(e.amount)})
         .toList();
 
-    var t = jsonEncode(products);
+    var t = jsonEncode({"items": products});
 
     final http.Response response = await http.post(
-      Uri.parse(urlApiOrderProducts),
+      Uri.parse(urlApiUpdateAmount),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

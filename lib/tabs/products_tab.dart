@@ -6,7 +6,7 @@ import 'package:order_app/models/product.dart';
 import 'package:order_app/tiles/product_tile.dart';
 
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/product";
+const urlApi = "http://192.168.15.61:80//getAllProduct";
 
 class ProductsTab extends StatelessWidget {
   final _productController = TextEditingController();
